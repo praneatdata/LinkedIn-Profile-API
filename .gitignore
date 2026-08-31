@@ -1,0 +1,32 @@
+# --- secrets: never commit ---
+.env
+.env.*
+!.env.example
+*.pem
+cookies.json
+
+# --- captured live data (may contain personal data) ---
+tests/fixtures/live_*.json
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# --- tooling ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- os / editor ---
+.DS_Store
+.idea/
+.vscode/
