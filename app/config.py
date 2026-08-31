@@ -67,6 +67,18 @@ class Settings(BaseSettings):
         return self.LI_JSESSIONID.strip().strip('"')
 
     @property
+    def jsessionid_cookie(self) -> str:
+        """The JSESSIONID *cookie* keeps its quotes, unlike the csrf-token header.
+
+        Re-adds them if the value was pasted unquoted — the single most common
+        copy-paste mistake when lifting the cookie out of DevTools.
+        """
+        value = self.LI_JSESSIONID.strip()
+        if value and not value.startswith('"'):
+            value = f'"{value}"'
+        return value
+
+    @property
     def has_credentials(self) -> bool:
         return bool(self.LI_AT and self.LI_JSESSIONID)
 
