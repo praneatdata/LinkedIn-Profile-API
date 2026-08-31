@@ -1,0 +1,69 @@
+{
+  "_comment": "Modern 'dash' shape (identity/dash/profiles?q=memberIdentity). Uses fsd_* URNs and dateRange{start,end} instead of fs_* / timePeriod{startDate,endDate}. Synthetic data.",
+  "data": {
+    "$type": "com.linkedin.restli.common.CollectionResponse",
+    "*elements": ["urn:li:fsd_profile:ACoAAAExample03"],
+    "paging": { "count": 10, "start": 0, "total": 1 }
+  },
+  "included": [
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Profile",
+      "entityUrn": "urn:li:fsd_profile:ACoAAAExample03",
+      "publicIdentifier": "dash-example",
+      "firstName": "Dash",
+      "lastName": "Example",
+      "headline": "Product Manager at Hooli",
+      "summary": "Dash-shaped about section.",
+      "geoLocation": {
+        "$type": "com.linkedin.voyager.dash.identity.profile.ProfileGeoLocation",
+        "geo": { "defaultLocalizedName": "Berlin, Germany" }
+      },
+      "location": {
+        "countryCode": "de"
+      },
+      "profilePicture": {
+        "$type": "com.linkedin.voyager.dash.common.image.ImageReference",
+        "displayImageReference": {
+          "vectorImage": {
+            "rootUrl": "https://media.licdn.com/dms/image/v2/D5603AQEXAMPLEDASH/",
+            "artifacts": [
+              {
+                "width": 400,
+                "height": 400,
+                "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_400_400/0/1700000000000?e=1767225600&v=beta&t=DASH400"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Position",
+      "entityUrn": "urn:li:fsd_profilePosition:(ACoAAAExample03,1)",
+      "title": "Product Manager",
+      "companyName": "Hooli",
+      "locationName": "Berlin, Germany",
+      "description": "Owned the search relevance roadmap.",
+      "dateRange": {
+        "$type": "com.linkedin.common.DateRange",
+        "start": { "month": 5, "year": 2023 }
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Education",
+      "entityUrn": "urn:li:fsd_profileEducation:(ACoAAAExample03,1)",
+      "schoolName": "Technical University of Berlin",
+      "degreeName": "Diplom",
+      "fieldOfStudy": "Industrial Engineering",
+      "dateRange": {
+        "start": { "year": 2016 },
+        "end": { "year": 2020 }
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.dash.identity.profile.Skill",
+      "entityUrn": "urn:li:fsd_profileSkill:(ACoAAAExample03,0)",
+      "name": "Product Strategy"
+    }
+  ]
+}

@@ -1,0 +1,397 @@
+{
+  "data": {
+    "$type": "com.linkedin.voyager.identity.profile.ProfileView",
+    "entityUrn": "urn:li:fs_profileView:ACoAAAExample01",
+    "*profile": "urn:li:fs_profile:ACoAAAExample01",
+    "positionView": {
+      "$type": "com.linkedin.voyager.identity.profile.PositionView",
+      "paging": { "count": 50, "start": 0, "total": 3 },
+      "profileId": "ACoAAAExample01",
+      "*elements": [
+        "urn:li:fs_position:(ACoAAAExample01,1900000001)",
+        "urn:li:fs_position:(ACoAAAExample01,1900000002)",
+        "urn:li:fs_position:(ACoAAAExample01,1900000003)"
+      ]
+    },
+    "educationView": {
+      "$type": "com.linkedin.voyager.identity.profile.EducationView",
+      "paging": { "count": 50, "start": 0, "total": 2 },
+      "profileId": "ACoAAAExample01",
+      "*elements": [
+        "urn:li:fs_education:(ACoAAAExample01,2900000001)",
+        "urn:li:fs_education:(ACoAAAExample01,2900000002)"
+      ]
+    },
+    "skillView": {
+      "$type": "com.linkedin.voyager.identity.profile.SkillView",
+      "paging": { "count": 20, "start": 0, "total": 8 },
+      "profileId": "ACoAAAExample01",
+      "*elements": [
+        "urn:li:fs_skill:(ACoAAAExample01,0)",
+        "urn:li:fs_skill:(ACoAAAExample01,1)",
+        "urn:li:fs_skill:(ACoAAAExample01,2)",
+        "urn:li:fs_skill:(ACoAAAExample01,3)",
+        "urn:li:fs_skill:(ACoAAAExample01,4)",
+        "urn:li:fs_skill:(ACoAAAExample01,5)",
+        "urn:li:fs_skill:(ACoAAAExample01,6)",
+        "urn:li:fs_skill:(ACoAAAExample01,7)"
+      ]
+    },
+    "certificationView": {
+      "$type": "com.linkedin.voyager.identity.profile.CertificationView",
+      "paging": { "count": 50, "start": 0, "total": 2 },
+      "profileId": "ACoAAAExample01",
+      "*elements": [
+        "urn:li:fs_certification:(ACoAAAExample01,0)",
+        "urn:li:fs_certification:(ACoAAAExample01,1)"
+      ]
+    },
+    "languageView": {
+      "$type": "com.linkedin.voyager.identity.profile.LanguageView",
+      "paging": { "count": 50, "start": 0, "total": 2 },
+      "profileId": "ACoAAAExample01",
+      "*elements": [
+        "urn:li:fs_language:(ACoAAAExample01,0)",
+        "urn:li:fs_language:(ACoAAAExample01,1)"
+      ]
+    },
+    "projectView": {
+      "$type": "com.linkedin.voyager.identity.profile.ProjectView",
+      "paging": { "count": 50, "start": 0, "total": 0 },
+      "profileId": "ACoAAAExample01",
+      "*elements": []
+    }
+  },
+  "included": [
+    {
+      "$type": "com.linkedin.voyager.identity.shared.MiniProfile",
+      "entityUrn": "urn:li:fs_miniProfile:ACoAAAExample01",
+      "objectUrn": "urn:li:member:100000001",
+      "publicIdentifier": "jane-doe-example",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "occupation": "Senior Software Engineer at Acme Corp",
+      "trackingId": "EXAMPLEtrackingId==",
+      "picture": {
+        "$type": "com.linkedin.common.VectorImage",
+        "rootUrl": "https://media.licdn.com/dms/image/v2/D5603AQEXAMPLEPHOTO/",
+        "artifacts": [
+          {
+            "$type": "com.linkedin.common.VectorArtifact",
+            "width": 100,
+            "height": 100,
+            "expiresAt": 1767225600000,
+            "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_100_100/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE100"
+          },
+          {
+            "$type": "com.linkedin.common.VectorArtifact",
+            "width": 200,
+            "height": 200,
+            "expiresAt": 1767225600000,
+            "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_200_200/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE200"
+          },
+          {
+            "$type": "com.linkedin.common.VectorArtifact",
+            "width": 400,
+            "height": 400,
+            "expiresAt": 1767225600000,
+            "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_400_400/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE400"
+          },
+          {
+            "$type": "com.linkedin.common.VectorArtifact",
+            "width": 800,
+            "height": 800,
+            "expiresAt": 1767225600000,
+            "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_800_800/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE800"
+          }
+        ]
+      },
+      "backgroundImage": {
+        "$type": "com.linkedin.common.VectorImage",
+        "rootUrl": "https://media.licdn.com/dms/image/v2/D5616AQEXAMPLECOVER/",
+        "artifacts": [
+          {
+            "$type": "com.linkedin.common.VectorArtifact",
+            "width": 350,
+            "height": 87,
+            "expiresAt": 1767225600000,
+            "fileIdentifyingUrlPathSegment": "profile-displaybackgroundimage-shrink_350_1400/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE350"
+          },
+          {
+            "$type": "com.linkedin.common.VectorArtifact",
+            "width": 1400,
+            "height": 350,
+            "expiresAt": 1767225600000,
+            "fileIdentifyingUrlPathSegment": "profile-displaybackgroundimage-shrink_1400_425/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE1400"
+          }
+        ]
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Profile",
+      "entityUrn": "urn:li:fs_profile:ACoAAAExample01",
+      "publicIdentifier": "jane-doe-example",
+      "firstName": "Jane",
+      "lastName": "Doe",
+      "maidenName": null,
+      "headline": "Senior Software Engineer at Acme Corp | Distributed Systems & Developer Tooling",
+      "summary": "Backend engineer with 9 years building high-throughput distributed systems.\n\nI care about observability, boring technology, and paying down complexity before it compounds. Currently leading the ingestion pipeline rewrite at Acme Corp (12B events/day, p99 under 40ms).\n\nPreviously at Globex and Initech. Open-source maintainer of two small Python libraries.",
+      "industryName": "Software Development",
+      "industryUrn": "urn:li:fs_industry:4",
+      "locationName": "San Francisco, California",
+      "geoLocationName": "San Francisco, California",
+      "geoCountryName": "United States",
+      "geoLocationBackfilled": false,
+      "location": {
+        "$type": "com.linkedin.voyager.identity.profile.ProfileLocation",
+        "basicLocation": {
+          "$type": "com.linkedin.common.BasicLocation",
+          "countryCode": "us",
+          "postalCode": "94105"
+        }
+      },
+      "*miniProfile": "urn:li:fs_miniProfile:ACoAAAExample01",
+      "profilePicture": {
+        "$type": "com.linkedin.voyager.identity.profile.ProfilePicture",
+        "displayImageReference": {
+          "vectorImage": {
+            "$type": "com.linkedin.common.VectorImage",
+            "rootUrl": "https://media.licdn.com/dms/image/v2/D5603AQEXAMPLEPHOTO/",
+            "artifacts": [
+              {
+                "$type": "com.linkedin.common.VectorArtifact",
+                "width": 400,
+                "height": 400,
+                "expiresAt": 1767225600000,
+                "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_400_400/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE400"
+              },
+              {
+                "$type": "com.linkedin.common.VectorArtifact",
+                "width": 800,
+                "height": 800,
+                "expiresAt": 1767225600000,
+                "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_800_800/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE800"
+              }
+            ]
+          }
+        }
+      },
+      "backgroundPicture": {
+        "$type": "com.linkedin.voyager.identity.profile.BackgroundPicture",
+        "displayImageReference": {
+          "vectorImage": {
+            "$type": "com.linkedin.common.VectorImage",
+            "rootUrl": "https://media.licdn.com/dms/image/v2/D5616AQEXAMPLECOVER/",
+            "artifacts": [
+              {
+                "$type": "com.linkedin.common.VectorArtifact",
+                "width": 1400,
+                "height": 350,
+                "expiresAt": 1767225600000,
+                "fileIdentifyingUrlPathSegment": "profile-displaybackgroundimage-shrink_1400_425/0/1700000000000?e=1767225600&v=beta&t=EXAMPLE1400"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Position",
+      "entityUrn": "urn:li:fs_position:(ACoAAAExample01,1900000001)",
+      "title": "Senior Software Engineer",
+      "companyName": "Acme Corp",
+      "locationName": "San Francisco, California, United States",
+      "description": "Tech lead for the event ingestion platform. Rewrote the ingest path from a monolithic consumer to a sharded Rust/Python hybrid, cutting p99 latency from 380ms to 38ms and infra spend by 41%.",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "month": 3, "year": 2021 }
+      },
+      "companyUrn": "urn:li:fs_miniCompany:1000001",
+      "*company": "urn:li:fs_miniCompany:1000001",
+      "region": "urn:li:fs_region:(us,84)",
+      "geoLocationName": "San Francisco Bay Area"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Position",
+      "entityUrn": "urn:li:fs_position:(ACoAAAExample01,1900000002)",
+      "title": "Software Engineer II",
+      "companyName": "Globex Corporation",
+      "locationName": "Seattle, Washington, United States",
+      "description": "Built the internal feature-flag service used by 40+ teams. Owned on-call for the billing API.",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "month": 8, "year": 2018 },
+        "endDate": { "$type": "com.linkedin.common.Date", "month": 2, "year": 2021 }
+      },
+      "companyUrn": "urn:li:fs_miniCompany:1000002",
+      "*company": "urn:li:fs_miniCompany:1000002"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Position",
+      "entityUrn": "urn:li:fs_position:(ACoAAAExample01,1900000003)",
+      "title": "Backend Engineer",
+      "companyName": "Initech",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "year": 2016 },
+        "endDate": { "$type": "com.linkedin.common.Date", "month": 7, "year": 2018 }
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Education",
+      "entityUrn": "urn:li:fs_education:(ACoAAAExample01,2900000001)",
+      "schoolName": "Stanford University",
+      "degreeName": "Master of Science - MS",
+      "fieldOfStudy": "Computer Science",
+      "grade": "3.9",
+      "activities": "ACM chapter, distributed systems reading group",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "year": 2014 },
+        "endDate": { "$type": "com.linkedin.common.Date", "year": 2016 }
+      },
+      "schoolUrn": "urn:li:fs_miniSchool:1792",
+      "*school": "urn:li:fs_miniSchool:1792"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Education",
+      "entityUrn": "urn:li:fs_education:(ACoAAAExample01,2900000002)",
+      "schoolName": "University of Illinois Urbana-Champaign",
+      "degreeName": "Bachelor of Science - BS",
+      "fieldOfStudy": "Computer Engineering",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "year": 2010 },
+        "endDate": { "$type": "com.linkedin.common.Date", "year": 2014 }
+      },
+      "schoolUrn": "urn:li:fs_miniSchool:18043"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,0)",
+      "name": "Distributed Systems"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,1)",
+      "name": "Python"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,2)",
+      "name": "Apache Kafka"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,3)",
+      "name": "Kubernetes"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,4)",
+      "name": "PostgreSQL"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,5)",
+      "name": "Rust"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,6)",
+      "name": "Observability"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Skill",
+      "entityUrn": "urn:li:fs_skill:(ACoAAAExample01,7)",
+      "name": "Terraform"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Certification",
+      "entityUrn": "urn:li:fs_certification:(ACoAAAExample01,0)",
+      "name": "AWS Certified Solutions Architect - Associate",
+      "authority": "Amazon Web Services (AWS)",
+      "licenseNumber": "EXAMPLE-AWS-1234",
+      "url": "https://www.credly.com/badges/00000000-0000-0000-0000-000000000000",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "month": 6, "year": 2022 },
+        "endDate": { "$type": "com.linkedin.common.Date", "month": 6, "year": 2025 }
+      },
+      "companyUrn": "urn:li:fs_miniCompany:1000003"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Certification",
+      "entityUrn": "urn:li:fs_certification:(ACoAAAExample01,1)",
+      "name": "Certified Kubernetes Administrator (CKA)",
+      "authority": "The Linux Foundation",
+      "timePeriod": {
+        "$type": "com.linkedin.common.DateRange",
+        "startDate": { "$type": "com.linkedin.common.Date", "month": 11, "year": 2021 }
+      }
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Language",
+      "entityUrn": "urn:li:fs_language:(ACoAAAExample01,0)",
+      "name": "English",
+      "proficiency": "NATIVE_OR_BILINGUAL"
+    },
+    {
+      "$type": "com.linkedin.voyager.identity.profile.Language",
+      "entityUrn": "urn:li:fs_language:(ACoAAAExample01,1)",
+      "name": "Spanish",
+      "proficiency": "PROFESSIONAL_WORKING"
+    },
+    {
+      "$type": "com.linkedin.voyager.organization.MiniCompany",
+      "entityUrn": "urn:li:fs_miniCompany:1000001",
+      "objectUrn": "urn:li:company:1000001",
+      "name": "Acme Corp",
+      "universalName": "acme-corp-example",
+      "active": true,
+      "showcase": false,
+      "trackingId": "EXAMPLEcompany1=="
+    },
+    {
+      "$type": "com.linkedin.voyager.organization.MiniCompany",
+      "entityUrn": "urn:li:fs_miniCompany:1000002",
+      "objectUrn": "urn:li:company:1000002",
+      "name": "Globex Corporation",
+      "universalName": "globex-corporation-example",
+      "active": true,
+      "showcase": false,
+      "trackingId": "EXAMPLEcompany2=="
+    },
+    {
+      "$type": "com.linkedin.voyager.organization.MiniCompany",
+      "entityUrn": "urn:li:fs_miniCompany:1000003",
+      "objectUrn": "urn:li:company:1000003",
+      "name": "Amazon Web Services (AWS)",
+      "universalName": "amazon-web-services-example",
+      "active": true,
+      "showcase": false,
+      "trackingId": "EXAMPLEcompany3=="
+    },
+    {
+      "$type": "com.linkedin.voyager.entities.shared.MiniSchool",
+      "entityUrn": "urn:li:fs_miniSchool:1792",
+      "objectUrn": "urn:li:school:1792",
+      "schoolName": "Stanford University",
+      "active": true,
+      "trackingId": "EXAMPLEschool1=="
+    },
+    {
+      "$type": "com.linkedin.voyager.entities.shared.MiniSchool",
+      "entityUrn": "urn:li:fs_miniSchool:18043",
+      "objectUrn": "urn:li:school:18043",
+      "schoolName": "University of Illinois Urbana-Champaign",
+      "active": true,
+      "trackingId": "EXAMPLEschool2=="
+    },
+    {
+      "$type": "com.linkedin.voyager.common.Industry",
+      "entityUrn": "urn:li:fs_industry:4",
+      "name": "Software Development"
+    }
+  ]
+}

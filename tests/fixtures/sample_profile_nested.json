@@ -1,0 +1,90 @@
+{
+  "_comment": "Legacy NON-normalized profileView shape — what Voyager returns without the 'application/vnd.linkedin.normalized+json+2.1' Accept header. Entities are inline under *View.elements instead of a flat included[]. Synthetic data.",
+  "profile": {
+    "$type": "com.linkedin.voyager.identity.profile.Profile",
+    "entityUrn": "urn:li:fs_profile:ACoAAAExample02",
+    "publicIdentifier": "nested-example",
+    "firstName": "Sam",
+    "lastName": "Nested",
+    "headline": "Data Engineer at Initech",
+    "summary": "Short about section.",
+    "locationName": "Austin, Texas",
+    "geoCountryName": "United States",
+    "miniProfile": {
+      "$type": "com.linkedin.voyager.identity.shared.MiniProfile",
+      "entityUrn": "urn:li:fs_miniProfile:ACoAAAExample02",
+      "publicIdentifier": "nested-example",
+      "firstName": "Sam",
+      "lastName": "Nested",
+      "occupation": "Data Engineer at Initech",
+      "picture": {
+        "$type": "com.linkedin.common.VectorImage",
+        "rootUrl": "https://media.licdn.com/dms/image/v2/D5603AQEXAMPLENEST/",
+        "artifacts": [
+          {
+            "width": 200,
+            "height": 200,
+            "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_200_200/0/1700000000000?e=1767225600&v=beta&t=NEST200"
+          },
+          {
+            "width": 800,
+            "height": 800,
+            "fileIdentifyingUrlPathSegment": "profile-displayphoto-shrink_800_800/0/1700000000000?e=1767225600&v=beta&t=NEST800"
+          }
+        ]
+      }
+    }
+  },
+  "positionView": {
+    "$type": "com.linkedin.voyager.identity.profile.PositionView",
+    "paging": { "count": 50, "start": 0, "total": 1 },
+    "profileId": "ACoAAAExample02",
+    "elements": [
+      {
+        "$type": "com.linkedin.voyager.identity.profile.Position",
+        "entityUrn": "urn:li:fs_position:(ACoAAAExample02,1)",
+        "title": "Data Engineer",
+        "companyName": "Initech",
+        "locationName": "Austin, Texas",
+        "timePeriod": {
+          "startDate": { "month": 1, "year": 2022 }
+        }
+      }
+    ]
+  },
+  "educationView": {
+    "$type": "com.linkedin.voyager.identity.profile.EducationView",
+    "paging": { "count": 50, "start": 0, "total": 1 },
+    "profileId": "ACoAAAExample02",
+    "elements": [
+      {
+        "$type": "com.linkedin.voyager.identity.profile.Education",
+        "entityUrn": "urn:li:fs_education:(ACoAAAExample02,1)",
+        "schoolName": "University of Texas at Austin",
+        "degreeName": "Bachelor of Science - BS",
+        "fieldOfStudy": "Statistics",
+        "timePeriod": {
+          "startDate": { "year": 2017 },
+          "endDate": { "year": 2021 }
+        }
+      }
+    ]
+  },
+  "skillView": {
+    "$type": "com.linkedin.voyager.identity.profile.SkillView",
+    "paging": { "count": 20, "start": 0, "total": 2 },
+    "profileId": "ACoAAAExample02",
+    "elements": [
+      {
+        "$type": "com.linkedin.voyager.identity.profile.Skill",
+        "entityUrn": "urn:li:fs_skill:(ACoAAAExample02,0)",
+        "name": "dbt"
+      },
+      {
+        "$type": "com.linkedin.voyager.identity.profile.Skill",
+        "entityUrn": "urn:li:fs_skill:(ACoAAAExample02,1)",
+        "name": "Airflow"
+      }
+    ]
+  }
+}
