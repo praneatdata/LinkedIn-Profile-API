@@ -35,12 +35,15 @@ def _require_live_environment() -> Settings:
         for name, present in (
             ("LI_AT", bool(settings.LI_AT)),
             ("LI_JSESSIONID", bool(settings.LI_JSESSIONID)),
-            ("PROXY_URL", settings.has_proxy),
+            # Either a proxy or an explicit local-dev direct-egress opt-in.
+            ("PROXY_URL (or ALLOW_DIRECT_EGRESS=true)", settings.egress_allowed),
         )
         if not present
     ]
     if missing:
         pytest.skip(f"BLOCKED: needs {', '.join(missing)} from human (see .env.example)")
+    if settings.direct_egress_in_use:
+        print("\nNOTE: no proxy — this request leaves from this host's own IP.")
     return settings
 
 

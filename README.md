@@ -129,6 +129,20 @@ proxies work too. Any commercial residential provider is fine.
 sends nothing — it will never fall back to the host's own IP address, because doing so
 would leak the server IP and burn the LinkedIn account on the first request.
 
+### Testing locally without buying a proxy
+
+A home internet connection already *is* a residential IP, so for local development you
+can opt out of the proxy requirement explicitly:
+
+```bash
+ALLOW_DIRECT_EGRESS=true RUN_LIVE=1 pytest -m live -q -s
+```
+
+This defaults to `false`, and `false` is the only correct value in a deployment: on a
+cloud host it would expose a datacenter IP, which is exactly what the fail-closed check
+exists to prevent. When it is active, startup logs a warning and `/readiness` reports
+`"direct_egress_in_use": true` so the state is never silent.
+
 ---
 
 ## API reference
@@ -467,6 +481,7 @@ be set in the dashboard and is never stored in the repo.
 | `LI_AT` | for live calls | — | LinkedIn session cookie (throwaway account) |
 | `LI_JSESSIONID` | for live calls | — | CSRF cookie, quotes included |
 | `PROXY_URL` | **yes** | — | residential/mobile proxy; fail-closed if unset |
+| `ALLOW_DIRECT_EGRESS` | no | `false` | local dev only — send from this host's IP with no proxy. **Never set in a deployment.** |
 | `API_KEY` | strongly advised | — | required in `X-API-KEY`; unset disables auth |
 | `CACHE_TTL_SECONDS` | no | `86400` | profile cache TTL |
 | `IMPERSONATE` | no | `chrome` | `curl_cffi` TLS impersonation target |

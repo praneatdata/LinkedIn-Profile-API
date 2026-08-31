@@ -39,6 +39,12 @@ class Settings(BaseSettings):
     # Residential/mobile proxy. Required for live calls; the client fails closed.
     PROXY_URL: str = ""
 
+    # LOCAL DEVELOPMENT ONLY. Sends LinkedIn traffic from this host's own IP.
+    # Safe on a home/residential connection; on a cloud host it exposes a datacenter
+    # IP, which LinkedIn answers with HTTP 999 and which risks the account. Default
+    # false so a deployment that forgets PROXY_URL fails closed instead of leaking.
+    ALLOW_DIRECT_EGRESS: bool = False
+
     # --- Auth for this API ---
     API_KEY: str = ""
 
@@ -85,6 +91,19 @@ class Settings(BaseSettings):
     @property
     def has_proxy(self) -> bool:
         return bool(self.PROXY_URL.strip())
+
+    @property
+    def egress_allowed(self) -> bool:
+        """Whether outbound LinkedIn traffic is permitted at all.
+
+        A proxy is the supported path; `ALLOW_DIRECT_EGRESS` is a deliberate,
+        explicitly-opted-into escape hatch for local development.
+        """
+        return self.has_proxy or self.ALLOW_DIRECT_EGRESS
+
+    @property
+    def direct_egress_in_use(self) -> bool:
+        return self.ALLOW_DIRECT_EGRESS and not self.has_proxy
 
     @property
     def auth_enforced(self) -> bool:

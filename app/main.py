@@ -61,7 +61,14 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         settings.auth_enforced,
         settings.CACHE_TTL_SECONDS,
     )
-    if not settings.has_proxy:
+    if settings.direct_egress_in_use:
+        logger.warning(
+            "ALLOW_DIRECT_EGRESS is enabled and PROXY_URL is unset: LinkedIn traffic "
+            "will leave from THIS HOST'S IP. That is fine on a residential connection "
+            "and wrong on a cloud host, where LinkedIn answers datacenter IPs with "
+            "HTTP 999. Set PROXY_URL before deploying."
+        )
+    elif not settings.has_proxy:
         logger.warning(
             "PROXY_URL is not set — /profile will fail closed rather than send "
             "LinkedIn traffic from this host's IP address."
@@ -114,10 +121,12 @@ def readiness(
         "version": __version__,
         "credentials_configured": settings.has_credentials,
         "proxy_configured": settings.has_proxy,
+        # True only in the unsafe local-development mode; must be false in production.
+        "direct_egress_in_use": settings.direct_egress_in_use,
         "api_key_enforced": settings.auth_enforced,
         "impersonate": settings.IMPERSONATE,
         "dash_fallback_enabled": settings.dash_enabled,
-        "ready_for_live_requests": settings.has_credentials and settings.has_proxy,
+        "ready_for_live_requests": settings.has_credentials and settings.egress_allowed,
         "cache": cache.stats(),
     }
 

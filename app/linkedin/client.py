@@ -198,13 +198,16 @@ class LinkedInClient:
 
     def _proxies(self) -> dict[str, str]:
         if not self.settings.has_proxy:
+            if self.settings.ALLOW_DIRECT_EGRESS:
+                # Explicitly opted in: no proxy, traffic leaves via this host's IP.
+                return {}
             raise ProxyRequired()
         proxy = self.settings.PROXY_URL.strip()
         return {"http": proxy, "https": proxy}
 
     def _require_egress_proxy(self) -> None:
         """Fail closed. Checked before anything else so no request can escape."""
-        if not self.settings.has_proxy:
+        if not self.settings.egress_allowed:
             raise ProxyRequired()
 
     def _require_credentials(self) -> None:

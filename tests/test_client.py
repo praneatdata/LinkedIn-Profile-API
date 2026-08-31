@@ -166,6 +166,53 @@ def test_whitespace_only_proxy_is_treated_as_unset(monkeypatch: pytest.MonkeyPat
         LinkedInClient().fetch_raw("someone")
 
 
+def test_direct_egress_is_off_by_default(monkeypatch: pytest.MonkeyPatch) -> None:
+    """The escape hatch must never be reachable without an explicit opt-in."""
+    monkeypatch.delenv("PROXY_URL", raising=False)
+    monkeypatch.delenv("ALLOW_DIRECT_EGRESS", raising=False)
+    assert LinkedInClient().settings.ALLOW_DIRECT_EGRESS is False
+    with pytest.raises(ProxyRequired):
+        LinkedInClient().fetch_raw("someone")
+
+
+@pytest.mark.parametrize("falsy", ["false", "0", "no", "False"])
+def test_direct_egress_stays_closed_for_falsy_values(
+    monkeypatch: pytest.MonkeyPatch, falsy: str
+) -> None:
+    monkeypatch.delenv("PROXY_URL", raising=False)
+    monkeypatch.setenv("ALLOW_DIRECT_EGRESS", falsy)
+    with pytest.raises(ProxyRequired):
+        LinkedInClient().fetch_raw("someone")
+
+
+def test_direct_egress_opt_in_sends_without_a_proxy(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("PROXY_URL", raising=False)
+    monkeypatch.setenv("ALLOW_DIRECT_EGRESS", "true")
+    monkeypatch.setenv("LI_AT", "AQEDAT-fake")
+    monkeypatch.setenv("LI_JSESSIONID", '"ajax:1"')
+    recorder = Recorder(FakeResponse(text='{"included": []}'))
+    monkeypatch.setattr(client_module, "_http_get", recorder)
+
+    assert LinkedInClient().fetch_raw("someone") == {"included": []}
+    # No proxy dict at all — not a partially-populated one.
+    assert recorder.calls[0]["proxies"] == {}
+
+
+def test_a_real_proxy_still_wins_over_the_escape_hatch(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setenv("PROXY_URL", PROXY_WITH_SECRET)
+    monkeypatch.setenv("ALLOW_DIRECT_EGRESS", "true")
+    monkeypatch.setenv("LI_AT", "AQEDAT-fake")
+    monkeypatch.setenv("LI_JSESSIONID", '"ajax:1"')
+    recorder = Recorder(FakeResponse(text='{"included": []}'))
+    monkeypatch.setattr(client_module, "_http_get", recorder)
+
+    LinkedInClient().fetch_raw("someone")
+    assert recorder.calls[0]["proxies"]["https"] == PROXY_WITH_SECRET
+    assert LinkedInClient().settings.direct_egress_in_use is False
+
+
 def test_credentials_required_once_proxy_is_present(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("PROXY_URL", PROXY_WITH_SECRET)
     monkeypatch.delenv("LI_AT", raising=False)
