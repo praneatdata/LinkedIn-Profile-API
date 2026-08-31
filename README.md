@@ -1,5 +1,7 @@
 # LinkedIn Profile API
 
+[![CI](https://github.com/praneatdata/LinkedIn-Profile-API/actions/workflows/ci.yml/badge.svg)](https://github.com/praneatdata/LinkedIn-Profile-API/actions/workflows/ci.yml)
+
 A small HTTPS API that turns a LinkedIn profile URL into clean, structured JSON.
 
 ```
@@ -50,8 +52,8 @@ impersonation (`curl_cffi`), browser-consistent headers, and a residential egres
 ## Quick start
 
 ```bash
-git clone <your-fork-url> linkedin-profile-api
-cd linkedin-profile-api
+git clone https://github.com/praneatdata/LinkedIn-Profile-API.git
+cd LinkedIn-Profile-API
 
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements-dev.txt        # runtime + test deps
