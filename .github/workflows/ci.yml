@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: offline tests (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      # No credentials, no proxy, no network: the suite is designed to pass bare.
+      - name: Run offline test suite
+        run: pytest -q
+
+      - name: App imports and boots without any secrets
+        run: |
+          python -c "from app.main import app; print('app import OK')"
+          python -c "from app.config import Settings; Settings(); print('settings OK')"
+
+  secret-hygiene:
+    name: no secrets committed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: No .env file is tracked
+        run: |
+          if git ls-files --error-unmatch .env 2>/dev/null; then
+            echo "::error::.env is tracked by git"; exit 1
+          fi
+          tracked=$(git ls-files | grep -E '^\.env' | grep -v '^\.env\.example$' || true)
+          if [ -n "$tracked" ]; then
+            echo "::error::env files tracked: $tracked"; exit 1
+          fi
+          echo "OK: no .env tracked"
+
+      - name: No captured live profile data is tracked
+        run: |
+          tracked=$(git ls-files | grep -E 'tests/fixtures/live_.*\.json' || true)
+          if [ -n "$tracked" ]; then
+            echo "::error::captured personal data tracked: $tracked"; exit 1
+          fi
+          echo "OK: no live captures tracked"
+
+      - name: .env.example lists key names only, never values
+        run: |
+          offenders=$(grep -E '^(LI_AT|LI_JSESSIONID|PROXY_URL|API_KEY)=.+' .env.example || true)
+          if [ -n "$offenders" ]; then
+            echo "::error::.env.example contains values: $offenders"; exit 1
+          fi
+          echo "OK: .env.example has no secret values"
+
+      # A real li_at cookie is a long AQED-prefixed blob. Test placeholders are short,
+      # so this catches a genuine cookie in history without flagging the fixtures.
+      - name: No real LinkedIn session cookie in history
+        run: |
+          if git log -p --all | grep -Eq 'AQED[A-Za-z0-9_-]{40,}'; then
+            echo "::error::a real-looking li_at cookie appears in git history"; exit 1
+          fi
+          echo "OK: no real cookie found in history"

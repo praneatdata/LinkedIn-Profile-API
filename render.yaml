@@ -1,0 +1,26 @@
+# Render blueprint. Alternative to railway.json — use whichever platform you prefer.
+# Every secret is `sync: false`, i.e. it MUST be set in the Render dashboard and is
+# never stored in this repository.
+services:
+  - type: web
+    name: linkedin-profile-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    healthCheckPath: /health
+    # One instance: the TTL cache is in-process, and extra instances would multiply
+    # cache misses against a rate-limited LinkedIn account.
+    numInstances: 1
+    envVars:
+      - key: LI_AT
+        sync: false
+      - key: LI_JSESSIONID
+        sync: false
+      - key: PROXY_URL
+        sync: false
+      - key: API_KEY
+        sync: false
+      - key: CACHE_TTL_SECONDS
+        value: "86400"
+      - key: IMPERSONATE
+        value: chrome
